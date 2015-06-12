@@ -15,6 +15,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -166,6 +170,19 @@ public class ForecastFragment extends Fragment {
                 forecastJsonStr = buffer.toString();
 
                 Log.v(LOG_TAG, "Forecast JSON String: " + forecastJsonStr);
+                try {
+                    JSONObject weatherData = new JSONObject(forecastJsonStr);
+                    JSONArray allList = weatherData.getJSONArray("list");
+                    JSONObject first = allList.getJSONObject(0);
+                    JSONObject temp = first.getJSONObject("temp");
+                    double maxTemp = temp.getDouble("max");
+
+                    Log.v(LOG_TAG, "Built URI " + maxTemp);
+                } catch (JSONException e) {
+                    Log.e(LOG_TAG, "Error ", e);
+                    return null;
+                }
+
 
             } catch (IOException e) {
                 Log.e(LOG_TAG, "Error ", e);
