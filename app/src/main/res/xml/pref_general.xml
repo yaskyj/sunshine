@@ -9,5 +9,10 @@
         android:defaultValue="@string/pref_location_default"
         android:inputType="text"
         android:singleLine="true"/>
-
+    <ListPreference
+        android:key="@string/units_key"
+        android:title="@string/units_label"
+        android:entries="@array/temp_units"
+        android:entryValues="@array/temp_unit_values"
+        android:defaultValue="@string/units_default"/>
 </PreferenceScreen>

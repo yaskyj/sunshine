@@ -8,4 +8,7 @@
     <string name="pref_location_key">location</string>
     <string name="pref_location_label" translatable="false">Location</string>
     <string name="pref_location_default" translatable="false">70130</string>
+    <string name="units_label">Temperature Units</string>
+    <string name="units_key">units</string>
+    <string name="units_default">1</string>
 </resources>
