@@ -138,19 +138,15 @@ public class ForecastFragment extends Fragment {
             // For presentation, assume the user doesn't care about tenths of a degree.
             SharedPreferences sharePref = PreferenceManager.getDefaultSharedPreferences(getActivity());
             String unitPref = sharePref.getString(getString(R.string.units_key), getString(R.string.units_default));
-            Log.v("Test ", unitPref);
             long roundedHigh;
             long roundedLow;
             if (unitPref.equals("1")) {
                 roundedHigh = Math.round((high * 1.8) + 32);
                 roundedLow = Math.round((low * 1.8) + 32);
-                Log.v("Test ", "equating to 1");
             } else {
                 roundedHigh = Math.round(high);
                 roundedLow = Math.round(low);
             }
-            Log.v("Test ", String.valueOf(roundedHigh));
-            Log.v("Test ", String.valueOf(roundedLow));
 
             String highLowStr = roundedHigh + "/" + roundedLow;
             return highLowStr;
