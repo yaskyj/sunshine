@@ -15,6 +15,7 @@
  */
 package org.justinrogers.sunshine.data;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.test.AndroidTestCase;
@@ -112,22 +113,38 @@ public class TestDb extends AndroidTestCase {
     */
     public void testLocationTable() {
         // First step: Get reference to writable database
-
+        WeatherDbHelper dbHelper = new WeatherDbHelper(mContext);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        assertEquals(true, db.isOpen());
         // Create ContentValues of what you want to insert
         // (you can use the createNorthPoleLocationValues if you wish)
-
+        ContentValues contentValues = TestUtilities.createNorthPoleLocationValues();
         // Insert ContentValues into database and get a row ID back
+        long locationRowId;
+        locationRowId = db.insert(WeatherContract.LocationEntry.TABLE_NAME, null, contentValues);
+        assertTrue("Error: Failure to insert North Pole Location Values", locationRowId != -1);
 
         // Query the database and receive a Cursor back
-
+        Cursor cursor = db.query(
+                WeatherContract.LocationEntry.TABLE_NAME,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null);
         // Move the cursor to a valid database row
-
+        assertTrue("Error: No Records returned from location query", cursor.moveToFirst());
         // Validate org.justinrogers.sunshine.data in resulting Cursor with the original ContentValues
         // (you can use the validateCurrentRecord function in TestUtilities to validate the
         // query if you like)
-
+        TestUtilities.validateCurrentRecord("Error: Location Query Validation Failed",
+                cursor, contentValues);
+        assertFalse("Error: More than one record returned from location query",
+                cursor.moveToNext());
         // Finally, close the cursor and database
-
+        cursor.close();
+        db.close();
     }
 
     /*
@@ -144,7 +161,7 @@ public class TestDb extends AndroidTestCase {
         // we can move this code to insertLocation and then call insertLocation from both
         // tests. Why move it? We need the code to return the ID of the inserted location
         // and our testLocationTable can only return void because it's a test.
-
+        long locationRowId = insertLocation();
         // First step: Get reference to writable database
 
         // Create ContentValues of what you want to insert
@@ -170,6 +187,17 @@ public class TestDb extends AndroidTestCase {
         testWeatherTable and testLocationTable.
      */
     public long insertLocation() {
-        return -1L;
+        // First step: Get reference to writable database
+        WeatherDbHelper dbHelper = new WeatherDbHelper(mContext);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        assertEquals(true, db.isOpen());
+        // Create ContentValues of what you want to insert
+        // (you can use the createNorthPoleLocationValues if you wish)
+        ContentValues contentValues = TestUtilities.createNorthPoleLocationValues();
+        // Insert ContentValues into database and get a row ID back
+        long locationRowId;
+        locationRowId = db.insert(WeatherContract.LocationEntry.TABLE_NAME, null, contentValues);
+        assertTrue("Error: Failure to insert North Pole Location Values", locationRowId != -1);
+        return locationRowId;
     }
 }
