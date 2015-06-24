@@ -1,4 +1,4 @@
-package com.example.android.sunshine.app.data;
+package org.justinrogers.sunshine.data;
 
 import android.content.ContentValues;
 import android.database.ContentObserver;
@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Set;
 
 /*
-    Students: These are functions and some test data to make it easier to test your database and
+    Students: These are functions and some test org.justinrogers.sunshine.data to make it easier to test your database and
     Content Provider.  Note that you'll want your WeatherContract class to exactly match the one
     in our solution to use these as-given.
  */

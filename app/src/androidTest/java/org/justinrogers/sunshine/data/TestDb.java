@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.sunshine.app.data;
+package org.justinrogers.sunshine.data;
 
 import android.test.AndroidTestCase;
 
@@ -22,17 +22,17 @@ public class TestDb extends AndroidTestCase {
     public static final String LOG_TAG = TestDb.class.getSimpleName();
 
     // Since we want each test to start with a clean slate
-    void deleteTheDatabase() {
-        mContext.deleteDatabase(WeatherDbHelper.DATABASE_NAME);
-    }
+//    void deleteTheDatabase() {
+//        mContext.deleteDatabase(WeatherDbHelper.DATABASE_NAME);
+//    }
 
     /*
         This function gets called before each test is executed to delete the database.  This makes
         sure that we always have a clean test.
      */
-    public void setUp() {
-        deleteTheDatabase();
-    }
+//    public void setUp() {
+//        deleteTheDatabase();
+//    }
 
     /*
         Students: Uncomment this test once you've written the code to create the Location
@@ -118,7 +118,7 @@ public class TestDb extends AndroidTestCase {
 
         // Move the cursor to a valid database row
 
-        // Validate data in resulting Cursor with the original ContentValues
+        // Validate org.justinrogers.sunshine.data in resulting Cursor with the original ContentValues
         // (you can use the validateCurrentRecord function in TestUtilities to validate the
         // query if you like)
 
@@ -152,7 +152,7 @@ public class TestDb extends AndroidTestCase {
 
         // Move the cursor to a valid database row
 
-        // Validate data in resulting Cursor with the original ContentValues
+        // Validate org.justinrogers.sunshine.data in resulting Cursor with the original ContentValues
         // (you can use the validateCurrentRecord function in TestUtilities to validate the
         // query if you like)
 

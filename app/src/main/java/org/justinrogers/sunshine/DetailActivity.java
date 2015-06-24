@@ -72,7 +72,7 @@ public class DetailActivity extends ActionBarActivity {
 
             View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
 
-            // The detail Activity called via intent.  Inspect the intent for forecast data.
+            // The detail Activity called via intent.  Inspect the intent for forecast org.justinrogers.sunshine.data.
             Intent intent = getActivity().getIntent();
             if (intent != null && intent.hasExtra(Intent.EXTRA_TEXT)) {
                 mForecastStr = intent.getStringExtra(Intent.EXTRA_TEXT);
@@ -96,7 +96,7 @@ public class DetailActivity extends ActionBarActivity {
                     (ShareActionProvider) MenuItemCompat.getActionProvider(menuItem);
 
             // Attach an intent to this ShareActionProvider.  You can update this at any time,
-            // like when the user selects a new piece of data they might like to share.
+            // like when the user selects a new piece of org.justinrogers.sunshine.data they might like to share.
             if (mShareActionProvider != null ) {
                 mShareActionProvider.setShareIntent(createShareForecastIntent());
             } else {

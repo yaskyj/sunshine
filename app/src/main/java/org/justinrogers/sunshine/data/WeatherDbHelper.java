@@ -23,7 +23,7 @@ import com.example.android.sunshine.app.data.WeatherContract.LocationEntry;
 import com.example.android.sunshine.app.data.WeatherContract.WeatherEntry;
 
 /**
- * Manages a local database for weather data.
+ * Manages a local database for weather org.justinrogers.sunshine.data.
  */
 public class WeatherDbHelper extends SQLiteOpenHelper {
 
@@ -42,11 +42,11 @@ public class WeatherDbHelper extends SQLiteOpenHelper {
                 // Why AutoIncrement here, and not above?
                 // Unique keys will be auto-generated in either case.  But for weather
                 // forecasting, it's reasonable to assume the user will want information
-                // for a certain date and all dates *following*, so the forecast data
+                // for a certain date and all dates *following*, so the forecast org.justinrogers.sunshine.data
                 // should be sorted accordingly.
                 WeatherEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
 
-                // the ID of the location entry associated with this weather data
+                // the ID of the location entry associated with this weather org.justinrogers.sunshine.data
                 WeatherEntry.COLUMN_LOC_KEY + " INTEGER NOT NULL, " +
                 WeatherEntry.COLUMN_DATE + " INTEGER NOT NULL, " +
                 WeatherEntry.COLUMN_SHORT_DESC + " TEXT NOT NULL, " +
@@ -74,11 +74,11 @@ public class WeatherDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
-        // This database is only a cache for online data, so its upgrade policy is
-        // to simply to discard the data and start over
+        // This database is only a cache for online org.justinrogers.sunshine.data, so its upgrade policy is
+        // to simply to discard the org.justinrogers.sunshine.data and start over
         // Note that this only fires if you change the version number for your database.
         // It does NOT depend on the version number for your application.
-        // If you want to update the schema without wiping data, commenting out the next 2 lines
+        // If you want to update the schema without wiping org.justinrogers.sunshine.data, commenting out the next 2 lines
         // should be your top priority before modifying this method.
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + LocationEntry.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + WeatherEntry.TABLE_NAME);

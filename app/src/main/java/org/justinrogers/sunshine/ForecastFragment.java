@@ -72,7 +72,7 @@ public class ForecastFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        // The ArrayAdapter will take data from a source and
+        // The ArrayAdapter will take org.justinrogers.sunshine.data from a source and
         // use it to populate the ListView it's attached to.
         mForecastAdapter =
                 new ArrayAdapter<String>(
@@ -150,7 +150,7 @@ public class ForecastFragment extends Fragment {
 
         /**
          * Take the String representing the complete forecast in JSON Format and
-         * pull out the data we need to construct the Strings needed for the wireframes.
+         * pull out the org.justinrogers.sunshine.data we need to construct the Strings needed for the wireframes.
          *
          * Fortunately parsing is easy:  constructor takes the JSON string and converts it
          * into an Object hierarchy for us.
@@ -170,10 +170,10 @@ public class ForecastFragment extends Fragment {
             JSONArray weatherArray = forecastJson.getJSONArray(OWM_LIST);
 
             // OWM returns daily forecasts based upon the local time of the city that is being
-            // asked for, which means that we need to know the GMT offset to translate this data
+            // asked for, which means that we need to know the GMT offset to translate this org.justinrogers.sunshine.data
             // properly.
 
-            // Since this data is also sent in-order and the first day is always the
+            // Since this org.justinrogers.sunshine.data is also sent in-order and the first day is always the
             // current day, we're going to take advantage of that to get a nice
             // normalized UTC date for all of our weather.
 
@@ -191,7 +191,7 @@ public class ForecastFragment extends Fragment {
             // Data is fetched in Celsius by default.
             // If user prefers to see in Fahrenheit, convert the values here.
             // We do this rather than fetching in Fahrenheit so that the user can
-            // change this option without us having to re-fetch the data once
+            // change this option without us having to re-fetch the org.justinrogers.sunshine.data once
             // we start storing the values in a database.
             SharedPreferences sharedPrefs =
                     PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -257,7 +257,7 @@ public class ForecastFragment extends Fragment {
                 // Possible parameters are avaiable at OWM's forecast API page, at
                 // http://openweathermap.org/API#forecast
                 final String FORECAST_BASE_URL =
-                        "http://api.openweathermap.org/data/2.5/forecast/daily?";
+                        "http://api.openweathermap.org/org.justinrogers.sunshine.data/2.5/forecast/daily?";
                 final String QUERY_PARAM = "q";
                 final String FORMAT_PARAM = "mode";
                 final String UNITS_PARAM = "units";
@@ -301,7 +301,7 @@ public class ForecastFragment extends Fragment {
                 forecastJsonStr = buffer.toString();
             } catch (IOException e) {
                 Log.e(LOG_TAG, "Error ", e);
-                // If the code didn't successfully get the weather data, there's no point in attemping
+                // If the code didn't successfully get the weather org.justinrogers.sunshine.data, there's no point in attemping
                 // to parse it.
                 return null;
             } finally {
@@ -335,7 +335,7 @@ public class ForecastFragment extends Fragment {
                 for(String dayForecastStr : result) {
                     mForecastAdapter.add(dayForecastStr);
                 }
-                // New data is back from the server.  Hooray!
+                // New org.justinrogers.sunshine.data is back from the server.  Hooray!
             }
         }
     }
