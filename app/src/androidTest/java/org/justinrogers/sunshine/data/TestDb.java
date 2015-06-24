@@ -120,8 +120,7 @@ public class TestDb extends AndroidTestCase {
         // (you can use the createNorthPoleLocationValues if you wish)
         ContentValues contentValues = TestUtilities.createNorthPoleLocationValues();
         // Insert ContentValues into database and get a row ID back
-        long locationRowId;
-        locationRowId = db.insert(WeatherContract.LocationEntry.TABLE_NAME, null, contentValues);
+        long locationRowId = insertLocation();
         assertTrue("Error: Failure to insert North Pole Location Values", locationRowId != -1);
 
         // Query the database and receive a Cursor back
@@ -132,7 +131,8 @@ public class TestDb extends AndroidTestCase {
                 null,
                 null,
                 null,
-                null);
+                null
+        );
         // Move the cursor to a valid database row
         assertTrue("Error: No Records returned from location query", cursor.moveToFirst());
         // Validate org.justinrogers.sunshine.data in resulting Cursor with the original ContentValues
@@ -163,21 +163,39 @@ public class TestDb extends AndroidTestCase {
         // and our testLocationTable can only return void because it's a test.
         long locationRowId = insertLocation();
         // First step: Get reference to writable database
-
+        WeatherDbHelper dbHelper = new WeatherDbHelper(mContext);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        assertEquals(true, db.isOpen());
         // Create ContentValues of what you want to insert
         // (you can use the createWeatherValues TestUtilities function if you wish)
+        ContentValues testvalues = TestUtilities.createWeatherValues(locationRowId);
 
         // Insert ContentValues into database and get a row ID back
+        long weatherRowId = db.insert(WeatherContract.WeatherEntry.TABLE_NAME, null, testvalues);
 
         // Query the database and receive a Cursor back
-
+        Cursor cursor = db.query(
+                WeatherContract.WeatherEntry.TABLE_NAME,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
         // Move the cursor to a valid database row
+        assertTrue("Error: No Records returned from weather query", cursor.moveToFirst());
 
         // Validate org.justinrogers.sunshine.data in resulting Cursor with the original ContentValues
         // (you can use the validateCurrentRecord function in TestUtilities to validate the
         // query if you like)
-
+        TestUtilities.validateCurrentRecord("Error: Weather Query Validation Failed",
+                cursor, testvalues);
+        assertFalse("Error: More than one record returned from weather query",
+                cursor.moveToNext());
         // Finally, close the cursor and database
+        cursor.close();
+        db.close();
     }
 
 
