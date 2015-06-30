@@ -10,10 +10,8 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <provider
-            android:authorities="org.justinrogers.sunshine"
-            android:name=".data.WeatherProvider"
-            android:enabled="true"
-            android:exported="true" />
+            android:authorities="org.justinrogers.sunshine.app"
+            android:name=".data.WeatherProvider" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
