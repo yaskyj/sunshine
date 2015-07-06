@@ -39,6 +39,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.justinrogers.sunshine.MainActivity" />
         </activity>
+
+        <service android:name=".service.SunshineService"/>
     </application>
 
 </manifest>
