@@ -40,6 +40,9 @@
 
     <!-- Strings for formatting weather-related data -->
 
+    <!-- String for empty ListView in fragment_main-->
+    <string name="empty_forecast_list">No Weather Information Available</string>
+
     <!-- Label for the temperature units preference [CHAR LIMIT=30] -->
     <string name="pref_units_label">Temperature Units</string>
 
