@@ -18,4 +18,12 @@
         android:padding="@dimen/activity_horizontal_margin"
         android:visibility="gone"
         android:text="@string/empty_forecast_list"/>
+
+    <!--<TextView android:id="@+id/network_empty"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:gravity="center_horizontal"-->
+        <!--android:padding="@dimen/activity_horizontal_margin"-->
+        <!--android:visibility="gone"-->
+        <!--android:text=""/>-->
 </FrameLayout>

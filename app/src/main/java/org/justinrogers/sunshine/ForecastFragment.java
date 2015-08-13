@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
 import android.support.v4.content.CursorLoader;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
@@ -20,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.justinrogers.sunshine.data.WeatherContract;
 import org.justinrogers.sunshine.sync.SunshineSyncAdapter;
@@ -249,6 +251,7 @@ public class ForecastFragment extends Fragment implements LoaderManager.LoaderCa
             // to, do so now.
             mListView.smoothScrollToPosition(mPosition);
         }
+        updateEmptyView();
     }
 
     @Override
@@ -260,6 +263,19 @@ public class ForecastFragment extends Fragment implements LoaderManager.LoaderCa
         mUseTodayLayout = useTodayLayout;
         if (mForecastAdapter != null) {
             mForecastAdapter.setUseTodayLayout(mUseTodayLayout);
+        }
+    }
+
+    private void updateEmptyView() {
+        if (mForecastAdapter.getCount() == 0) {
+            TextView tv = (TextView) getView().findViewById(R.id.listview_forecast_empty);
+            if (null != tv) {
+                int message = R.string.empty_forecast_list;
+                if (!Utility.isNetworkAvailable((getActivity()))) {
+                    message = R.string.no_network_connection;
+                }
+                tv.setText(message);
+            }
         }
     }
 }

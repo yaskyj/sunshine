@@ -43,6 +43,9 @@
     <!-- String for empty ListView in fragment_main-->
     <string name="empty_forecast_list">No Weather Information Available</string>
 
+    <!-- String for no network connection-->
+    <string name="no_network_connection">No weather information is available. \n The network is not available to fetch weather data.</string>
+
     <!-- Label for the temperature units preference [CHAR LIMIT=30] -->
     <string name="pref_units_label">Temperature Units</string>
 
