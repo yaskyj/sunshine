@@ -43,9 +43,6 @@
 
     <!-- Strings for formatting weather-related data -->
 
-    <!-- String for empty ListView in fragment_main-->
-    <string name="empty_forecast_list">No Weather Information Available</string>
-
     <!-- String for no network connection-->
     <string name="no_network_connection">No weather information is available. \n The network is not available to fetch weather data.</string>
 
@@ -102,5 +99,11 @@
 
     <!-- Strings related to Notification preference -->
     <string name="pref_last_notification">last_notification</string>
+
+    <!-- Empty Weather Database -->
+    <string name="empty_forecast_list">No Weather Information Available</string>
+    <string name="empty_forecast_list_no_network">No weather information available. The network is not available to fetch weather data.</string>
+    <string name="empty_forecast_list_server_down">No weather information available. The server is not returning data.</string>
+    <string name="empty_forecast_list_server_error">No weather information available. The server is not returning valid data. Please check for an updated version of Sunshine.</string>
 
 </resources>
