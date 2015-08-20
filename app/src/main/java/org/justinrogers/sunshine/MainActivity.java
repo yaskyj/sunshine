@@ -77,6 +77,7 @@ public class MainActivity extends ActionBarActivity implements ForecastFragment.
         if (checkPlayServices()) {
             mGcm = GoogleCloudMessaging.getInstance(this);
             String regId = getRegistrationId(this);
+            Log.d(LOG_TAG, regId);
 
             if (PROJECT_NUMBER.equals("Your Project Number")) {
                 new AlertDialog.Builder(this)
