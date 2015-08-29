@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements ForecastFragment.
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         if (findViewById(R.id.weather_detail_container) != null) {
             // The detail container view will be present only in the large-screen layouts
@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity implements ForecastFragment.
         if (checkPlayServices()) {
             mGcm = GoogleCloudMessaging.getInstance(this);
             String regId = getRegistrationId(this);
-            Log.d(LOG_TAG, regId);
 
             if (PROJECT_NUMBER.equals("Your Project Number")) {
                 new AlertDialog.Builder(this)
@@ -120,7 +119,6 @@ public class MainActivity extends AppCompatActivity implements ForecastFragment.
             startActivity(new Intent(this, SettingsActivity.class));
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -134,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements ForecastFragment.
             // Store regID as null
         }
 
-        String location = Utility.getPreferredLocation( this );
+        String location = Utility.getPreferredLocation(this);
         // update the location in our second pane using the fragment manager
         if (location != null && !location.equals(mLocation)) {
             ForecastFragment ff = (ForecastFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_forecast);
