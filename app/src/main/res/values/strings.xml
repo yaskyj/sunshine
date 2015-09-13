@@ -7,6 +7,7 @@
          or something similar.
     -->
     <string name="app_name">Sunshine</string>
+    <string name="title_widget_detail">Sunshine Details</string>
 
     <!--
          By convention, "action" denotes that this String will be used as the label for an Action,
