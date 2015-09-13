@@ -38,6 +38,7 @@ import org.justinrogers.sunshine.MainActivity;
 import org.justinrogers.sunshine.R;
 import org.justinrogers.sunshine.Utility;
 import org.justinrogers.sunshine.data.WeatherContract;
+import org.justinrogers.sunshine.muzei.WeatherMuzeiSource;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -53,7 +54,7 @@ import java.util.concurrent.ExecutionException;
 public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter {
     public final String LOG_TAG = SunshineSyncAdapter.class.getSimpleName();
     public static final String ACTION_DATA_UPDATED =
-            "org.justinrogers.sunshine.ACTION_DATA_UPDATED";
+            "com.example.android.sunshine.app.ACTION_DATA_UPDATED";
     // Interval at which to sync with the weather, in seconds.
     // 60 seconds (1 minute) * 180 = 3 hours
     public static final int SYNC_INTERVAL = 60 * 180;
@@ -341,6 +342,7 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter {
                         new String[] {Long.toString(dayTime.setJulianDay(julianStartDay-1))});
 
                 updateWidgets();
+                updateMuzei();
                 notifyWeather();
             }
             Log.d(LOG_TAG, "Sync Complete. " + cVVector.size() + " Inserted");
@@ -359,6 +361,16 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter {
         Intent dataUpdatedIntent = new Intent(ACTION_DATA_UPDATED)
                 .setPackage(context.getPackageName());
         context.sendBroadcast(dataUpdatedIntent);
+    }
+
+    private void updateMuzei() {
+        // Muzei is only compatible with Jelly Bean MR1+ devices, so there's no need to update the
+        // Muzei background on lower API level devices
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            Context context = getContext();
+            context.startService(new Intent(ACTION_DATA_UPDATED)
+                    .setClass(context, WeatherMuzeiSource.class));
+        }
     }
 
     private void notifyWeather() {
